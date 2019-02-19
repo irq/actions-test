@@ -5,7 +5,7 @@ workflow "Build and publish" {
 
 action "Dotnet restore" {
   uses = "azure/github-actions/dotnetcore-cli@master"
-  args = "restore -s https://api.nuget.org/v3/index.json -s %MYGET_FEED_URL%"
+  args = "restore -s https://api.nuget.org/v3/index.json -s $MYGET_FEED_URL"
   secrets = ["MYGET_FEED_URL"]
 }
 
@@ -29,7 +29,7 @@ action "Pack" {
 
 action "Publish" {
   uses = "azure/github-actions/dotnetcore-cli@master"
-  args = "nuget push package/ -s https://trustpilot.myget.org/F/libraries/ -k %MYGET_KEY% -ss https://trustpilot.myget.org/F/libraries/symbols/ -sk %MYGET_KEY%"
+  args = "nuget push package/ -s https://trustpilot.myget.org/F/libraries/ -k $MYGET_KEY -ss https://trustpilot.myget.org/F/libraries/symbols/ -sk $MYGET_KEY"
   needs = "Pack"
   secrets = ["MYGET_KEY"]
 }
