@@ -16,11 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY action.py .
 
-RUN echo $PWD
-RUN echo $GITHUB_WORKSPACE
-RUN ls -a .
-RUN ls -a /github/workspace
-
 # We don't care about args, so just run the script
 # https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#entrypoint
 ENTRYPOINT ["./action.py"]
