@@ -6,7 +6,7 @@ import re
 import requests
 import git
 
-GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
+GITHUB_TOKEN = os.environ['GITHUB_TOKEN_TRUSTPILOT']
 TRELLO_API_KEY = os.environ['TRELLO_API_KEY']
 TRELLO_TOKEN = os.environ['TRELLO_TOKEN']
 TRELLO_INVITATIONS_REVIEW_LIST_ID = os.environ['TRELLO_INVITATIONS_REVIEW_LIST_ID']
@@ -25,6 +25,12 @@ def main():
 def run_for_all(packages, new_version):
     for package in packages:
         search_result = search_library_consumers(package)
+
+        if not search_result:
+            print("No results for " + package +
+                  "+in:file+extension:csproj+org:trustpilot+-filename:InvitationsModel.csproj")
+            return
+
         projects = parse_search_results(search_result)
         update_package_in_projects(projects, package, new_version)
 
@@ -32,13 +38,7 @@ def run_for_all(packages, new_version):
 def search_library_consumers(package_name):
     search = "https://api.github.com/search/code?q=" + package_name + \
         "+in:file+extension:csproj+org:trustpilot+-filename:InvitationsModel.csproj"
-    result = github("GET", search).json()
-    if 'items' in result:
-        return result["items"]
-    else:
-        print("No results for " + package_name +
-              "+in:file+extension:csproj+org:trustpilot+-filename:InvitationsModel.csproj")
-        return []
+    return github("GET", search).json()
 
 
 def parse_search_results(search_items):
@@ -76,8 +76,6 @@ def parse_search_results(search_items):
 
 def update_package_in_projects(projects, package_name, new_version):
     print("Processing projects for package '" + package_name + "'")
-    print("Running for the following:")
-    print(projects)
 
     for project_id in projects:
         project = projects[project_id]
