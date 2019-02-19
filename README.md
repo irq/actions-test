@@ -1,4 +1,4 @@
-# actions-test
+# Github actions test
 
 Testing github actions
 
