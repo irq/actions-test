@@ -33,3 +33,16 @@ action "Publish" {
   needs = "Pack"
   secrets = ["MYGET_KEY"]
 }
+
+workflow "Push out model release" {
+  on = "release"
+  resolves = ["Push model"]
+}
+
+action "Push model" {
+  uses = "./push-model-action/"
+  secrets = ["GITHUB_TOKEN", "TRELLO_API_KEY", "TRELLO_TOKEN"],
+  env = {
+    "TRELLO_INVITATIONS_REVIEW_LIST_ID" = "54181ffda7de826d59c90e46"
+  }
+}
