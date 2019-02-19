@@ -41,7 +41,7 @@ workflow "Push out model release" {
 
 action "Push model" {
   uses = "./push-model-action/"
-  secrets = ["GITHUB_TOKEN_TRUSTPILOT", "TRELLO_API_KEY", "TRELLO_TOKEN"],
+  secrets = ["TRUSTPILOT_GITHUB_TOKEN", "TRELLO_API_KEY", "TRELLO_TOKEN"],
   env = {
     "TRELLO_INVITATIONS_REVIEW_LIST_ID" = "54181ffda7de826d59c90e46"
   }
