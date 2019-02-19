@@ -17,4 +17,4 @@ COPY action.py ./
 
 # We don't care about args, so just run the script
 # https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#entrypoint
-ENTRYPOINT ./action.py
+ENTRYPOINT ["./action.py"]
