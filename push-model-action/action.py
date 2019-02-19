@@ -67,8 +67,9 @@ def parse_search_results(search_items):
                 "project": item["path"]
             }
 
-        # Temp, return after first item is parsed
-        return parsed
+            # Temp, return after first item is parsed
+            return parsed
+
     return parsed
 
 
