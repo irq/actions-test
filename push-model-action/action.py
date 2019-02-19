@@ -38,16 +38,12 @@ def run_for_all(packages, new_version):
 def search_library_consumers(package_name):
     search = "https://api.github.com/search/code?q=" + package_name + \
         "+in:file+extension:csproj+org:trustpilot+-filename:InvitationsModel.csproj"
-    return github("GET", search).json()
+    return github("GET", search).json()["items"]
 
 
 def parse_search_results(search_items):
     parsed = {}
     for item in search_items:
-
-        # tmp print
-        print(item)
-
         repo = item["repository"]["id"]
         # The same repo could show up in the search results more than once
         if not repo in parsed:
