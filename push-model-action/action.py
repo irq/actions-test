@@ -68,6 +68,7 @@ def parse_search_results(search_items):
             }
 
             # Temp, return after first item is parsed
+            print(parsed)
             return parsed
 
     return parsed
@@ -75,6 +76,8 @@ def parse_search_results(search_items):
 
 def update_package_in_projects(projects, package_name, new_version):
     print("Processing projects for package '" + package_name + "'")
+    print("Running for the following:")
+    print(projects)
 
     for project_id in projects:
         project = projects[project_id]
