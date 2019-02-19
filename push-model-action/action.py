@@ -44,6 +44,10 @@ def search_library_consumers(package_name):
 def parse_search_results(search_items):
     parsed = {}
     for item in search_items:
+
+        # tmp print
+        print(item)
+
         repo = item["repository"]["id"]
         # The same repo could show up in the search results more than once
         if not repo in parsed:
