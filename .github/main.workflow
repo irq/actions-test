@@ -1,6 +1,10 @@
 workflow "Build and publish" {
   on = "push"
-  resolves = ["Publish"]
+  resolves = ["Publish", "Dump event"]
+}
+
+action "Dump event" {
+  uses = "./dump-event-action/"
 }
 
 action "Dotnet restore" {
