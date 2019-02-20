@@ -4,7 +4,7 @@ This action will make PRs to update the users of the invitations model with a ne
 
 ## secrets
 
-- GITHUB_TOKEN
+- TRUSTPILOT_GITHUB_TOKEN
 - TRELLO_API_KEY
 - TRELLO_TOKEN"
 
