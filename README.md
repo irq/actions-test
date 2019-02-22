@@ -10,3 +10,4 @@ Testing github actions
 ## On new release
 
 - Pushes invitations model, see ./push-model-action
+
